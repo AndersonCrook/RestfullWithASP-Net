@@ -16,8 +16,8 @@ namespace RestWithASPNet.Controllers
             _personService = personService;
         }
 
-        // GET api/persons
-        [HttpGet]
+        
+        [HttpGet]        
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {

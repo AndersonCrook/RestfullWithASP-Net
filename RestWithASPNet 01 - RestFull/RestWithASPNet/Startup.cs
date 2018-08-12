@@ -13,6 +13,8 @@ using RestWithASPNet.Services.Implementattions;
 using Microsoft.Net.Http.Headers;
 using Tapioca.HATEOAS;
 using RestWithASPNet.HyperMedia;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestWithASPNet
 {
@@ -62,9 +64,19 @@ namespace RestWithASPNet
 
             }).AddXmlSerializerFormatters();
 
-            var filterOptions = new HyperMediaFilterOptions();
-            filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
-            services.AddSingleton(filterOptions);
+            
+            var filterOptionsPerson = new HyperMediaFilterOptions();
+            filterOptionsPerson.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            services.AddSingleton(filterOptionsPerson);
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "RESTfull API with ASP .Net Core",
+                    Version = "v1"
+                });
+            });
 
             //versionamento boas praticas Microsoft Anderson
             services.AddApiVersioning();
@@ -86,6 +98,15 @@ namespace RestWithASPNet
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
 
             app.UseMvc(routes =>
             {

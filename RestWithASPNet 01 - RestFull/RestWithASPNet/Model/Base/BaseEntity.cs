@@ -5,7 +5,7 @@ namespace RestWithASPNet.Model.Base
 {
     //contrato entre atributos
     //ea estrutura da tabela
-   // [DataContract]
+   
     public class BaseEntity
     {
         [Column("id")]

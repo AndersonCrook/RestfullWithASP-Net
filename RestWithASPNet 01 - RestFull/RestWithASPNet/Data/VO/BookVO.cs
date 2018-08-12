@@ -1,24 +1,19 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Collections.Generic;
+using Tapioca.HATEOAS;
 
 namespace RestWithASPNet.Data.VO
 {
-    [DataContract]
-    public class BookVO 
+
+    public class BookVO : ISupportsHyperMedia
     {
-        [DataMember (Order =1, Name ="Identificador")]
+        
         public long? Id { get; set; }
-
-        [DataMember(Order = 2, Name = "Autor")]
         public string Author { get; set; }
-
-        [DataMember(Order = 3, Name = "Data")]
         public DateTime LaunchDate { get; set; }
-
-        [DataMember(Order = 4, Name = "Preço")]
         public decimal Price { get; set; }
-
-        [DataMember(Order = 5, Name = "Titulo")]
         public string Title { get; set; }
+
+        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }

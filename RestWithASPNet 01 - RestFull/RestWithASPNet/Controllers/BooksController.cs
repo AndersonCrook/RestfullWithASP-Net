@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestWithASPNet.Data.VO;
-using RestWithASPNet.Model;
 using RestWithASPNet.Service.Implementattions;
+using Tapioca.HATEOAS;
 
 namespace RestWithASPNet.Controllers
 {
@@ -18,6 +18,7 @@ namespace RestWithASPNet.Controllers
 
         // GET api/persons
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(_bookService.FindAll());
@@ -25,6 +26,7 @@ namespace RestWithASPNet.Controllers
 
         // GET api/persons/id
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
             var book = _bookService.FindById(id);
@@ -34,6 +36,7 @@ namespace RestWithASPNet.Controllers
 
         // POST api/persons
         [HttpPost]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody]BookVO book)
         {
             if (book == null) return NotFound();
@@ -42,6 +45,7 @@ namespace RestWithASPNet.Controllers
 
         // PUT api/pesons/id
         [HttpPut]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody]BookVO book)
         {
             if (book == null) return BadRequest();
@@ -55,6 +59,7 @@ namespace RestWithASPNet.Controllers
 
         // DELETE api/persons/id
         [HttpDelete("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
             _bookService.Delete(id);
