@@ -1,9 +1,9 @@
-﻿using RestWithASPNet.Model;
+﻿using RestWithASPNet.Data.VO;
 
 namespace RestWithASPNet.Repository.Generic
 {
     public interface ILoginService
     {
-        object FindByLogin(UserModel user);
+        object FindByLogin(UserVO user);
     }
 }

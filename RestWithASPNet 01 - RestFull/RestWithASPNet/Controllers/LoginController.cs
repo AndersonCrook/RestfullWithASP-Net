@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RestWithASPNet.Data.VO;
 using RestWithASPNet.Model;
 using RestWithASPNet.Repository.Generic;
 using Tapioca.HATEOAS;
@@ -20,9 +21,9 @@ namespace RestWithASPNet.Controllers
         [AllowAnonymous]
         [HttpPost]
         [TypeFilter(typeof(HyperMediaFilter))]
-        public object Post([FromBody]UserModel user)
+        public object Post([FromBody]UserVO user)
         {
-            if (user == null) return NotFound();
+            if (user == null) return BadRequest();
             return _loginService.FindByLogin(user);
         }
     }

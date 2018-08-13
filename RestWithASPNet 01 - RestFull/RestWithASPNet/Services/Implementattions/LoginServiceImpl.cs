@@ -1,4 +1,4 @@
-﻿using RestWithASPNet.Model;
+﻿using RestWithASPNet.Data.VO;
 using RestWithASPNet.Security.Configuration;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -21,7 +21,7 @@ namespace RestWithASPNet.Repository.Generic
             _tokenConfigurations = tokenConfigurations;
         }
 
-        public object FindByLogin(UserModel user)
+        public object FindByLogin(UserVO user)
         {
             bool credentialIsValid = false;
             if (user != null && !string.IsNullOrWhiteSpace(user.Login))
