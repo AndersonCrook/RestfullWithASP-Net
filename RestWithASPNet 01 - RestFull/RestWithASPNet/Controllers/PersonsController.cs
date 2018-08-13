@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RestWithASPNet.Data.VO;
 using RestWithASPNet.Service.Implementattions;
 using Tapioca.HATEOAS;
@@ -17,7 +18,8 @@ namespace RestWithASPNet.Controllers
         }
 
         
-        [HttpGet]        
+        [HttpGet]     
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
@@ -26,6 +28,7 @@ namespace RestWithASPNet.Controllers
 
         // GET api/persons/id
         [HttpGet("{id}")]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long id)
         {
@@ -36,6 +39,7 @@ namespace RestWithASPNet.Controllers
 
         // POST api/persons
         [HttpPost]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody]PersonVO person)
         {
@@ -45,6 +49,7 @@ namespace RestWithASPNet.Controllers
 
         // PUT api/pesons/id
         [HttpPut]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody]PersonVO person)
         {
@@ -59,6 +64,7 @@ namespace RestWithASPNet.Controllers
 
         // DELETE api/persons/id
         [HttpDelete("{id}")]
+        [Authorize("Bearer")]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {

@@ -1,6 +1,5 @@
 ﻿using RestWithASPNet.Model.Base;
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RestWithASPNet.Model
